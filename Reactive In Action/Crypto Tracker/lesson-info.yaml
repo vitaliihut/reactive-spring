@@ -1,0 +1,5 @@
+content:
+- crypto-service
+- price-service (1)
+- application
+- trade-service

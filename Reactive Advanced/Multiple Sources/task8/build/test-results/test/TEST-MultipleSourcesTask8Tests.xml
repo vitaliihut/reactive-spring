@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="MultipleSourcesTask8Tests" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-12-09T17:02:51" hostname="DESKTOP-G2M63HD" time="0.516">
+  <properties/>
+  <testcase name="testSolution()" classname="MultipleSourcesTask8Tests" time="0.516"/>
+  <system-out><![CDATA[19:02:51.314 [Test worker] DEBUG reactor.util.Loggers - Using Slf4j logging framework
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

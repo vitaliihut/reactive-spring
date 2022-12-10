@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="CommonOperatorsTask5Tests" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-12-05T19:30:54" hostname="DESKTOP-G2M63HD" time="0.366">
+  <properties/>
+  <testcase name="testSolution()" classname="CommonOperatorsTask5Tests" time="0.366"/>
+  <system-out><![CDATA[21:30:54.410 [Test worker] DEBUG reactor.util.Loggers - Using Slf4j logging framework
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
