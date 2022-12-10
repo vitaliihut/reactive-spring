@@ -78,28 +78,28 @@ files:
   visible: true
   placeholders:
   - offset: 1327
-    length: 13
+    length: 143
     placeholder_text: Flux.never();
     initial_state:
       length: 13
       offset: 1327
     initialized_from_dependency: false
-    selected: false
-    status: Unchecked
+    selected: true
+    status: Solved
     encrypted_possible_answer: |-
       input.retryWhen(
                   Retry.backoff(100, Duration.ofMillis(500))
                        .maxBackoff(Duration.ofMillis(2000))
               );
-  - offset: 1504
-    length: 13
+  - offset: 1634
+    length: 66
     placeholder_text: Flux.never();
     initial_state:
       length: 13
       offset: 1504
     initialized_from_dependency: false
-    selected: false
-    status: Unchecked
+    selected: true
+    status: Solved
     encrypted_possible_answer: input.replay(CACHE_SIZE).autoConnect(0);
   text: |
     package service.external;
@@ -342,5 +342,8 @@ files:
     \            .expectSubscription()\n\t\t            .expectNext(\"D\", \"E\",\
     \ \"F\", \"G\")\n\t\t            .verifyComplete();\n\t}\n}"
   learner_created: false
-status: Unchecked
+status: Solved
+feedback:
+  message: Congratulations!
+  time: Sat, 10 Dec 2022 11:10:30 UTC
 record: -1

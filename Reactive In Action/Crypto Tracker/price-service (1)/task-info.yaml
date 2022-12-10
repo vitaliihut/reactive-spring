@@ -14,35 +14,35 @@ files:
   visible: true
   placeholders:
   - offset: 1825
-    length: 13
+    length: 100
     placeholder_text: Flux.never();
     initial_state:
       length: 13
       offset: 1825
     initialized_from_dependency: false
-    selected: false
-    status: Unchecked
+    selected: true
+    status: Solved
     encrypted_possible_answer: input.filter(m -> MessageMapper.isPriceMessageType(m)
       && MessageMapper.isValidPriceMessage(m));
-  - offset: 2036
-    length: 13
+  - offset: 2123
+    length: 44
     placeholder_text: Flux.never();
     initial_state:
       length: 13
       offset: 2036
     initialized_from_dependency: false
-    selected: false
-    status: Unchecked
+    selected: true
+    status: Solved
     encrypted_possible_answer: input.map(MessageMapper::mapToPriceMessage);
-  - offset: 2760
-    length: 13
+  - offset: 2878
+    length: 624
     placeholder_text: Flux.never();
     initial_state:
       length: 13
       offset: 2760
     initialized_from_dependency: false
-    selected: false
-    status: Unchecked
+    selected: true
+    status: Solved
     encrypted_possible_answer: "requestedInterval\n\t\t\t\t.startWith(DEFAULT_AVG_PRICE_INTERVAL)\n\
       \t\t\t\t.switchMap(timeFrame ->\n\t\t\t\t\tpriceData.window(Duration.ofSeconds(timeFrame))\n\
       \t\t\t\t\t         .flatMap(this::currencyGroupingLogic)\n\t\t\t\t);\n\n\n\t\
@@ -174,5 +174,8 @@ files:
     \ expectedPrice(float v) {\n        return m -> (Math.abs(m - v) < 0.0001);\n\
     \    }\n}"
   learner_created: false
-status: Unchecked
+status: Solved
+feedback:
+  message: Congratulations!
+  time: Sat, 10 Dec 2022 11:17:35 UTC
 record: -1

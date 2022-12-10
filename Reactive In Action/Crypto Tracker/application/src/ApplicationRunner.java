@@ -20,7 +20,7 @@ import service.CryptoService;
 import service.PriceService;
 import service.TradeService;
 import service.external.CryptoCompareService;
-import service.impl.DefaultPriceService;
+//import service.impl.DefaultPriceService;
 import service.impl.DefaultTradeService;
 import utils.EmbeddedMongo;
 import utils.JsonUtils;
@@ -43,9 +43,9 @@ public class ApplicationRunner {
 		CryptoService cryptoCompareService = new CryptoCompareService();
 		TradeRepository h2Repository = new H2TradeRepository(createInMemH2());
 		TradeRepository mongoRepository = new MongoTradeRepository(MongoClients.create());
-		PriceService defaultPriceService = new DefaultPriceService(cryptoCompareService);
+//		PriceService defaultPriceService = new DefaultPriceService(cryptoCompareService);
 		TradeService defaultTradeService = new DefaultTradeService(cryptoCompareService, h2Repository, mongoRepository);
-		WSHandler handler = new WSHandler(defaultPriceService, defaultTradeService);
+		WSHandler handler = new WSHandler(defaultTradeService);
 
 		HttpServer.create()
 		          .host("localhost")
@@ -67,7 +67,7 @@ public class ApplicationRunner {
 			NettyUtils.prepareInput(req)
 			          .name("My Lovely Flux 1")
 			          .tag("My Super Important Key", "My Super Important Value")
-			          // TODO Enable stream metrics
+								.metrics()
 			          .doOnNext(inMessage -> logger.info("[WS] >> " + inMessage))
 			          .transform(ApplicationRunner::handleRequestedAveragePriceIntervalValue)
 			          .transform(handler::handle)
@@ -81,7 +81,18 @@ public class ApplicationRunner {
 	public static Flux<Long> handleRequestedAveragePriceIntervalValue(Flux<String> requestedInterval) {
 		// TODO: input may be incorrect, pass only correct interval
 		// TODO: ignore invalid values (empty, non number, <= 0, > 60)
-		return Flux.never();
+		return requestedInterval
+				.handle((s, sink) -> {
+							try {
+								long value = Long.parseLong(s);
+
+								if (value > 0 && value <=60) {
+									sink.next(value);
+								}
+							} catch (NumberFormatException e) {
+								// ignored
+							}
+				});
 	}
 
 	// Visible for testing
@@ -90,7 +101,7 @@ public class ApplicationRunner {
 		// It is possible that writing data to output may be slower than rate of
 		// incoming output data
 
-		return outgoingStream; // TODO Enable Backpressure
+		return outgoingStream.onBackpressureBuffer(); // TODO Enable Backpressure
 	}
 
 
